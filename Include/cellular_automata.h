@@ -6,6 +6,7 @@
 // data structures for the cellular automata library.
 
 #include <array>
+#include <string>
 
 using namespace std;
 
@@ -24,22 +25,15 @@ using namespace std;
 #define PARITY_XOR 22
 
 // This class defines possible options for the cellular automata
-enum class CA_type {
-    forest_fire,
-    covid_traffic,
-    cancer
+class CA_type {
+    string name;
 };
-
-// Initialisation
-// EnumName ObjectName = EnumName::Value;
 
 // This class defines the basic data structure for a cell.
 class Cell {
     public:
         // The constructor of the cell class.
         Cell(int x, int y, int state);
-        // The destructor of the cell class.
-        ~Cell();
         // The function to get the x coordinate of the cell.
         int get_x();
         // The function to get the y coordinate of the cell.
@@ -47,7 +41,7 @@ class Cell {
         // The function to get the state of the cell.
         int get_state();
         // The function to set the state of the cell.
-        void set_state(int state);
+        int set_state(int state);
     private:
         // The x coordinate of the cell.
         int x;
@@ -75,7 +69,7 @@ class cellular_automata {
         // The function to set up boundary rule and radius.
         int setup_boundary(int boundary_type, int radius);
         // The function to set up the number of states.
-        int CA_setup_nstates(int nstates);
+        int setup_nstates(int nstates);
         // The function to set up or update the initial configuration for the state 
         // of the automation and the probability of a cell entering state x from an empty cell.
         int update_config(int x_state, double prob);
@@ -103,13 +97,11 @@ class cellular_automata {
         // The function to get the probability of the CA.
         double get_prob();
         // The function to get the cell at the given coordinate.
-        Cell* get_cell(int x, int y);
-        // The function to set the cell at the given coordinate.
-        void set_cell(int x, int y, int state);
+        Cell get_cell(int x, int y);
         // The function to get the state of the cell at the given coordinate.
         int get_cell_state(Cell* cell);
         // The function to set the state of the cell at the given coordinate.
-        void set_cell_state(Cell* cell, int state);
+        int set_cell_state(Cell* cell, int state);
 
         // // The function to get the number of neighbors of the CA.
         // int get_num_neighbors();
@@ -147,4 +139,4 @@ class cellular_automata {
         // int num_neighbors;
         // // The neighbor list of the CA.
         // int* neighbor_list;
-}
+};
