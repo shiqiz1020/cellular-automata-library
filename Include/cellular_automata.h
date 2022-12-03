@@ -2,6 +2,7 @@
 // Shiqi Zhang, Jerry Pan, Wang Xu
 // December 2022
 
+// Directory Path: Include/cellular_automata.h
 // This file contains C++ class definition of the basic
 // data structures for the cellular automata library.
 

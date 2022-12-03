@@ -2,6 +2,7 @@
 // Shiqi Zhang, Jerry Pan, Wang Xu
 // December 2022
 
+// Directory Path: Include/library.h
 // This file contains the API for the cellular automata library.
 
 #include "cellular_automata.h"

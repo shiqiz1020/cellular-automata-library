@@ -2,6 +2,7 @@
 // Shiqi Zhang, Jerry Pan, Wang Xu
 // December 2022
 
+// Directory Path: Src/input.cpp
 // This file contains the c++ implementation of the 
 // input setup phase for the cellular automata library.
 
@@ -74,7 +75,7 @@ int CA_init_rewrite_config(cellular_automata CA, int x_state, double prob) {
 // input: The cellular automata object, the rule type.
 // output: 1 on success, -2 on making update after setup stage, -3 on invalid rule type.
 int CA_setup_rules(cellular_automata CA, int rule_type) {
-    return CA.setup_rules_prob(rule_type, NULL);
+    return CA.setup_rules_prob(rule_type, -1);
 }
 
 // function: CA_setup_rules_prob()

@@ -2,6 +2,7 @@
 // Shiqi Zhang, Jerry Pan, Wang Xu
 // December 2022
 
+// Directory Path: Src/cellular_automata.cpp
 // This file contains the c++ implementation of the 
 // cellular automata data structure.
 
@@ -214,7 +215,7 @@ int cellular_automata::enable_config_update() {
 // function: cellular_automata::setup_rules_prob()
 // description: The function to set up the rules of the CA.
 // input: The type of the rule and the probability of the state.
-// Note: prob can be NULL.
+// Note: prob can be -1 if the field is not intended to be used.
 // output: 1 on success, -2 on making update after setup stage, -3 on invalid rule type, -4 on invalid prob.
 int cellular_automata::setup_rules_prob(int rule_type, double prob) {
     if (this->allow_config_update == false) {
@@ -226,7 +227,7 @@ int cellular_automata::setup_rules_prob(int rule_type, double prob) {
     if (prob < 0 || prob > 1) {
         return -4;
     }
-    if (prob != NULL) {
+    if (prob != -1) {
         this->prob = prob;
     }
     this->rule_type = rule_type;
