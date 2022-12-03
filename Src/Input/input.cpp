@@ -2,7 +2,7 @@
 // Shiqi Zhang, Jerry Pan, Wang Xu
 // December 2022
 
-// Directory Path: Src/input.cpp
+// Directory Path: Src/Input/input.cpp
 // This file contains the c++ implementation of the
 // input setup phase for the cellular automata library.
 

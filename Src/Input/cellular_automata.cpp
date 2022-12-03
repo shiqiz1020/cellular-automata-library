@@ -2,7 +2,7 @@
 // Shiqi Zhang, Jerry Pan, Wang Xu
 // December 2022
 
-// Directory Path: Src/cellular_automata.cpp
+// Directory Path: Src/Input/cellular_automata.cpp
 // This file contains the c++ implementation of the
 // cellular automata data structure.
 
@@ -285,6 +285,15 @@ int cellular_automata::setup_rules_prob(int rule_type, double prob)
     }
     this->rule_type = rule_type;
     return 1;
+}
+
+// function: cellular_automata::get_ndims()
+// description: The function to get the number of dimensions of the CA.
+// input: None.
+// output: The number of dimensions of the CA.
+int cellular_automata::get_ndims()
+{
+    return this->ndims;
 }
 
 // function: cellular_automata::get_width()

@@ -14,16 +14,21 @@ using namespace std;
 // The maximum size of the grid is 500x500
 #define MAX_SIZE 500
 // Neighborhood types
-#define VON_NEUMAN 1
-#define MOOR 2
+#define VON_NEUMAN 1 // up, down, left, right
+#define MOOR 2       // up, down, left, right, up-left, up-right, down-left, down-right
 // Boundary types
-#define NO_BOUNDARY 11
-#define PERIODIC 12
-#define WALLED 13
-#define CUTOFF 14
+#define NO_BOUNDARY 11 // no boundary - infinite grid
+#define PERIODIC 12    // periodic boundary - the grid is a 1D ring or 2D torus
+#define WALLED 13      // walled boundary - the grid is a 1D or 2D rectangle with walls
+#define CUTOFF 14      // cutoff boundary - the grid is a 1D or 2D rectangle with cutoff edges
 // Rule types
-#define MAJORITY 21
-#define PARITY_XOR 22
+#define MAJORITY 21   // majority rule - the cell takes the majority state of its neighbors
+#define PARITY_XOR 22 // parity rule - the cell takes the parity of its neighbors
+// State types
+#define STATE1 31 // state 1: nothing in the grid
+#define STATE2 32 // state 2: something in the grid
+#define STATE3 33 // state 3: from STATE2 -> STATE3: via neighborhood propagation
+#define STATE4 34 // state 4: from STATE3 -> STATE4: 1 timestamp after STATE3
 
 // This class defines possible options for the cellular automata
 class CA_type
@@ -93,7 +98,9 @@ public:
     int get_width();
     // The function to get the height of the CA.
     int get_height();
-    // The functino to get the neighborhood type of the CA.
+    // The function to get the number of dimensions of the CA.
+    int get_ndims();
+    // The function to get the neighborhood type of the CA.
     int get_neighborhood_type();
     // The function to get the boundary type of the CA.
     int get_boundary_type();
@@ -126,6 +133,8 @@ private:
     int width;
     // The height of the CA.
     int height;
+    // The number of dimensions of the CA.
+    int ndims;
     // The neighborhood type of the CA.
     int neighborhood_type;
     // The boundary type of the CA.
