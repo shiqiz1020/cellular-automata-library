@@ -13,10 +13,10 @@ CPP         = g++      # C++ Compuler
 CPPFLAGS    = -g -c    
 
 # The directory where the include files needed to create the library objects are
-INC_DIR = ../Include
+INC_DIR = ../../Include
 
 # The directory where all object files are going to moved afer creation
-LIB_DIR     = ../Libdir
+LIB_DIR     = ../../Libdir
 
 # The next line contains the list of datatype object files created 
 # by this Makefile. These are the targets this makefile builds

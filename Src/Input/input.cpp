@@ -3,11 +3,11 @@
 // December 2022
 
 // Directory Path: Src/input.cpp
-// This file contains the c++ implementation of the 
+// This file contains the c++ implementation of the
 // input setup phase for the cellular automata library.
 
 #include "library.h"
-#include "cellular_automata.h"
+// #include "cellular_automata.h"
 
 using namespace std;
 
@@ -15,8 +15,9 @@ using namespace std;
 // description: The function to create a CA object.
 // input: The type of the CA.
 // output: The cellular_automata object.
-cellular_automata* CA_create(CA_type type) {
-    cellular_automata* CA = new cellular_automata();
+cellular_automata *CA_create(CA_type type)
+{
+    cellular_automata *CA = new cellular_automata();
     CA->setup_type(type);
     return CA;
 }
@@ -25,7 +26,8 @@ cellular_automata* CA_create(CA_type type) {
 // description: The function to set up the dimensions of the grid.
 // input: The cellular automata object, the number of dimensions, the first dimension, and the second dimension.
 // output: 1 on success, -1 on not 2D, -2 on allocation error, -4 on invalid dimension.
-int CA_setup_dimension(cellular_automata CA, int ndims, int dim1, int dim2) {
+int CA_setup_dimension(cellular_automata CA, int ndims, int dim1, int dim2)
+{
     return CA.setup_dimension(ndims, dim1, dim2);
 }
 
@@ -33,7 +35,8 @@ int CA_setup_dimension(cellular_automata CA, int ndims, int dim1, int dim2) {
 // description: The function to set up neighborhood rule.
 // input: The cellular automata object, the neighborhood type.
 // output: 1 on success, -2 on making update after setup stage, -3 on invalid neighborhood type.
-int CA_setup_neighborhood(cellular_automata CA, int neighborhood_type) {
+int CA_setup_neighborhood(cellular_automata CA, int neighborhood_type)
+{
     return CA.setup_neighborhood(neighborhood_type);
 }
 
@@ -41,7 +44,8 @@ int CA_setup_neighborhood(cellular_automata CA, int neighborhood_type) {
 // description: The function to set up boundary rule and radius.
 // input: The cellular automata object, the boundary type, and the radius.
 // output: 1 on success, -2 on making update after setup stage, -3 on invalid boundary type, -4 on invalid radius.
-int CA_setup_boundary(cellular_automata CA, int boundary_type, int radius) {
+int CA_setup_boundary(cellular_automata CA, int boundary_type, int radius)
+{
     return CA.setup_boundary(boundary_type, radius);
 }
 
@@ -49,7 +53,8 @@ int CA_setup_boundary(cellular_automata CA, int boundary_type, int radius) {
 // description: The function to set up the number of states.
 // input: The cellular automata object, the number of states.
 // output: 1 on success, -2 on making update after setup stage, -4 on invalid nstates.
-int CA_setup_nstates(cellular_automata CA, int nstates) {
+int CA_setup_nstates(cellular_automata CA, int nstates)
+{
     return CA.setup_nstates(nstates);
 }
 
@@ -58,7 +63,8 @@ int CA_setup_nstates(cellular_automata CA, int nstates) {
 // and the probability of a cell entering state x from an empty cell.
 // input: The cellular automata object, the state of the cell, and the probability.
 // output: 1 on success, -3 on invalid state, -4 on invalid prob.
-int CA_init_config(cellular_automata CA, int x_state, double prob) {
+int CA_init_config(cellular_automata CA, int x_state, double prob)
+{
     return CA.update_config(x_state, prob);
 }
 
@@ -66,7 +72,8 @@ int CA_init_config(cellular_automata CA, int x_state, double prob) {
 // description: The function to rewrite the initial configuration.
 // input: The cellular automata object, the state of the cell, and the probability.
 // output: 1 on success, -3 on invalid state, -4 on invalid prob.
-int CA_init_rewrite_config(cellular_automata CA, int x_state, double prob) {
+int CA_init_rewrite_config(cellular_automata CA, int x_state, double prob)
+{
     return CA.update_config(x_state, prob);
 }
 
@@ -74,7 +81,8 @@ int CA_init_rewrite_config(cellular_automata CA, int x_state, double prob) {
 // description: The function to set up the basic CA rules for computation.
 // input: The cellular automata object, the rule type.
 // output: 1 on success, -2 on making update after setup stage, -3 on invalid rule type.
-int CA_setup_rules(cellular_automata CA, int rule_type) {
+int CA_setup_rules(cellular_automata CA, int rule_type)
+{
     return CA.setup_rules_prob(rule_type, -1);
 }
 
@@ -82,8 +90,7 @@ int CA_setup_rules(cellular_automata CA, int rule_type) {
 // description: The function to set up the basic CA rules for computation with probability.
 // input: The cellular automata object, the rule type, and the probability.
 // output: 1 on success, -2 on making update after setup stage, -3 on invalid rule type, -4 on invalid prob.
-int CA_setup_rules_prob(cellular_automata CA, int rule_type, double prob) {
+int CA_setup_rules_prob(cellular_automata CA, int rule_type, double prob)
+{
     return CA.setup_rules_prob(rule_type, prob);
 }
-
-
