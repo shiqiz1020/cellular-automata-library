@@ -75,6 +75,8 @@ class cellular_automata {
         int update_config(int x_state, double prob);
         // The function to disable further updates to the initial configuration.
         int disable_config_update();
+        // The function to enable further updates to the initial configuration.
+        int enable_config_update();
         // The function to set up the basic CA rules for computation with probability.
         int setup_rules_prob(int rule_type, double prob);
 

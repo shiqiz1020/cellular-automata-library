@@ -96,10 +96,13 @@ int cellular_automata::setup_type(CA_type type) {
 // function: cellular_automata::setup_dimension()
 // description: The function to set up the dimensions of the CA.
 // input: The number of dimensions, the width, and the height of the CA.
-// output: 1 on success, -1 on not 2D, -2 on allocation error.
+// output: 1 on success, -1 on not 2D, -2 on allocation error, -4 on invalid dimension.
 int cellular_automata::setup_dimension(int ndims, int dim1, int dim2) {
     if (ndims != 2) {
         return -1;
+    }
+    if (dim1 <= 0 || dim2 <= 0) {
+        return -4;
     }
     this->width = dim1;
     this->height = dim2;
@@ -128,24 +131,33 @@ int cellular_automata::setup_dimension(int ndims, int dim1, int dim2) {
 // function: cellular_automata::setup_neighborhood()
 // description: The function to set up the neighborhood of the CA.
 // input: The type of the neighborhood.
-// output: 1 on success, -2 on making update after setup stage.
-int cellular_automata::setup_neighborhood(int type) {
+// output: 1 on success, -2 on making update after setup stage, -3 on invalid neighborhood type.
+int cellular_automata::setup_neighborhood(int neighborhood_type) {
+    if (neighborhood_type != 1 && neighborhood_type != 2) {
+        return -3;
+    }
     if (this->allow_config_update == false) {
         return -2;
     }
-    this->neighborhood_type = type;
+    this->neighborhood_type = neighborhood_type;
     return 1;
 }
 
 // function: cellular_automata::setup_boundary()
 // description: The function to set up the boundary of the CA.
 // input: The type of the boundary and the radius of the boundary.
-// output: 1 on success, -2 on making update after setup stage.
-int cellular_automata::setup_boundary(int type, int radius) {
+// output: 1 on success, -2 on making update after setup stage, -3 on invalid boundary type, -4 on invalid radius.
+int cellular_automata::setup_boundary(int boundary_type, int radius) {
+    if (boundary_type < 11 || boundary_type > 14) {
+        return -3;
+    }
+    if (radius <= 0) {
+        return -4;
+    }
     if (this->allow_config_update == false) {
         return -2;
     }
-    this->boundary_type = type;
+    this->boundary_type = boundary_type;
     this->radius = radius;
     return 1;
 }
@@ -153,8 +165,11 @@ int cellular_automata::setup_boundary(int type, int radius) {
 // function: cellular_automata::setup_nstates()
 // description: The function to set up the number of states of the CA.
 // input: The number of states of the CA.
-// output: 1 on success, -2 on making update after setup stage.
+// output: 1 on success, -2 on making update after setup stage, -4 on invalid nstates.
 int cellular_automata::setup_nstates(int nstates) {
+    if (nstates <= 0) {
+        return -4;
+    }
     if (this->allow_config_update == false) {
         return -2;
     }
@@ -165,8 +180,14 @@ int cellular_automata::setup_nstates(int nstates) {
 // function: cellular_automata::update_config()
 // description: The function to update the configuration of the CA.
 // input: the specific state of the cell, the probability of the state.
-// output: 1 on success.
+// output: 1 on success, -3 on invalid state, -4 on invalid prob.
 int cellular_automata::update_config(int x_state, double prob) {
+    if (x_state < 0 || x_state >= this->num_states) {
+        return -3;
+    }
+    if (prob < 0 || prob > 1) {
+        return -4;
+    }
     this->init_state = x_state;
     this->prob = prob;
     return 1;
@@ -181,14 +202,29 @@ int cellular_automata::disable_config_update() {
     return this->allow_config_update == true;
 }
 
+// function: cellular_automata::enable_config_update()
+// description: The function to enable the configuration update of the CA.
+// input: None.
+// output: 1 on allow update, 0 on not allow update.
+int cellular_automata::enable_config_update() {
+    this->allow_config_update = true;
+    return this->allow_config_update == true;
+}
+
 // function: cellular_automata::setup_rules_prob()
 // description: The function to set up the rules of the CA.
 // input: The type of the rule and the probability of the state.
 // Note: prob can be NULL.
-// output: 1 on success, -2 on making update after setup stage.
+// output: 1 on success, -2 on making update after setup stage, -3 on invalid rule type, -4 on invalid prob.
 int cellular_automata::setup_rules_prob(int rule_type, double prob) {
     if (this->allow_config_update == false) {
         return -2;
+    }
+    if (rule_type != 21 && rule_type != 22) {
+        return -3;
+    }
+    if (prob < 0 || prob > 1) {
+        return -4;
     }
     if (prob != NULL) {
         this->prob = prob;
