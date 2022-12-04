@@ -21,10 +21,11 @@ int main()
     CA->setup_neighborhood(MOOR);
     CA->setup_boundary(WALLED, 1);
     CA->setup_nstates(4);
-    CA->setup_rules_prob(MAJORITY, 0.5);
+    CA->setup_rules_prob(PARITY_XOR, 0.5);
+    CA->update_config(STATE2, 0.5);
 
     // Evolve the CA for 100 steps.
-    evolve(*CA, 100, "../Utils/Data/log.txt");
+    evolve(*CA, 100, "./Utils/Data/log.txt");
 
     return 0;
 }

@@ -78,27 +78,41 @@ void evolve(cellular_automata ca, int steps, string log_file_name)
     int width = ca.get_width();
     int height = ca.get_height();
 
+    // Duplicate the current state of the cellular automata as a cellular automata object
+    cellular_automata *ca_copy = new cellular_automata();
+    
+    // Get the current state of the cellular automata
+    for (int i = 0; i < height; i++)
+    {
+        for (int j = 0; j < width; j++)
+        {
+            ca_copy->get_cell(i, j).set_state(ca.get_cell(i, j).get_state());
+        }
+    }
+    
     // Now we only support WALLED boundary type
     if (boundary_type == WALLED)
     {
         // Evolve the cellular automata for a given number of steps
         for (int step = 0; step < steps; step++)
         {
+            cout << "Step " << step << endl;
             // Evolve the cellular automata for one step
             for (int i = 0; i < height; i++)
             {
                 for (int j = 0; j < width; j++)
                 {
-                    if (ca.get_cell(i, j).get_state() == STATE2)
+                    // Get the number of neighbors
+                    int num_neighbors = 0;
+                    // Get the number of neighbors in state 2
+                    int num_neighbors_state2 = 0;
+
+                    if (ca_copy->get_cell(i, j).get_state() == STATE3)
                     {
-                        ca.get_cell(i, j).set_state(STATE3);
+                        ca.get_cell(i, j).set_state(STATE4);
                     }
-                    else if (ca.get_cell(i, j).get_state() == STATE1)
+                    else if (ca_copy->get_cell(i, j).get_state() == STATE2)
                     {
-                        // Get the number of neighbors
-                        int num_neighbors = 0;
-                        // Get the number of neighbors in state 2
-                        int num_neighbors_state2 = 0;
                         for (int neighbor_i = i - radius; neighbor_i <= i + radius; neighbor_i++)
                         {
                             for (int neighbor_j = j - radius; neighbor_j <= j + radius; neighbor_j++)
@@ -110,7 +124,7 @@ void evolve(cellular_automata ca, int steps, string log_file_name)
                                     if ((neighbor_i != i || neighbor_j != j) && neighborhood_check(neighborhood_type, i, j, neighbor_i, neighbor_j, height, width, radius))
                                     {
                                         num_neighbors++;
-                                        if (ca.get_cell(neighbor_i, neighbor_j).get_state() == STATE2)
+                                        if (ca_copy->get_cell(neighbor_i, neighbor_j).get_state() == STATE3)
                                         {
                                             num_neighbors_state2++;
                                         }
@@ -122,14 +136,16 @@ void evolve(cellular_automata ca, int steps, string log_file_name)
                         {
                             if (num_neighbors_state2 > num_neighbors / 2)
                             {
-                                ca.get_cell(i, j).set_state(STATE2);
+                                ca.get_cell(i, j).set_state(STATE3);
                             }
                         }
                         else if (rule_type == PARITY_XOR)
                         {
+                            cout << num_neighbors << " " << num_neighbors_state2 << endl;
                             if (num_neighbors_state2 > 0)
                             {
-                                ca.get_cell(i, j).set_state(STATE2);
+                                cout << "Set cell (i, j) " << i << " " << j << " to state 2" << endl;
+                                ca.get_cell(i, j).set_state(STATE3);
                             }
                         }
                     }
@@ -140,7 +156,7 @@ void evolve(cellular_automata ca, int steps, string log_file_name)
             log_file << endl;
         }
         log_file.close();
-
+        ca_copy->~cellular_automata();
         return;
     }
 }

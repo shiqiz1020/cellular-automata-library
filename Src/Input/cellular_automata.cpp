@@ -7,6 +7,8 @@
 // cellular automata data structure.
 
 #include "cellular_automata.h"
+#include <stdlib.h> 
+#include <iostream>
 
 using namespace std;
 
@@ -228,16 +230,33 @@ int cellular_automata::setup_nstates(int nstates)
 // output: 1 on success, -3 on invalid state, -4 on invalid prob.
 int cellular_automata::update_config(int x_state, double prob)
 {
-    if (x_state < 0 || x_state >= this->num_states)
+    if (x_state < 0 || x_state % 10 > this->num_states)
     {
         return -3;
     }
+
     if (prob < 0 || prob > 1)
     {
         return -4;
     }
     this->init_state = x_state;
     this->prob = prob;
+    srand(time(NULL));
+
+    for (int i = 0; i < this->height; i++)
+    {
+        for (int j = 0; j < this->width; j++)
+        {
+            if (rand() % 100 < this->prob * 100)
+            {
+                this->CA_data[i][j].set_state(this->init_state);
+            } else {
+                this->CA_data[i][j].set_state(STATE1);
+            }
+        }
+    }
+    this->CA_data[int(this->height / 2)][int(this->width / 2)].set_state(STATE3);
+
     return 1;
 }
 
@@ -280,11 +299,11 @@ int cellular_automata::setup_rules_prob(int rule_type, double prob)
     {
         return -4;
     }
+    this->rule_type = rule_type;
     if (prob != -1)
     {
         this->prob = prob;
     }
-    this->rule_type = rule_type;
     return 1;
 }
 
