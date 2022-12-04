@@ -5,6 +5,7 @@
 // Directory Path: Include/cellular_automata.h
 // This file contains C++ class definition of the basic
 // data structures for the cellular automata library.
+#pragma once
 
 #include <array>
 #include <string>

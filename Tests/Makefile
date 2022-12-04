@@ -10,25 +10,28 @@
 CPP         = g++      # C++ Compuler
 
 # compiler flags -g debug, -O2 optimized version -c create a library object
-CPPFLAGS    = -g -c    
+CPPFLAGS    = -g    
 
 # The directory where the include files needed to create the library objects are
-INC_DIR = ../../Include
+INC_DIR = ../Include
 
 # The directory where all object files are going to moved afer creation
-LIB_DIR     = ../../Libdir
+LIB_DIR     = ../Libdir
+
+# The directory where all executable files are going to moved afer creation
+BIN_DIR = ../Bindir
 
 # The next line contains the list of datatype object files created 
 # by this Makefile. These are the targets this makefile builds
-DATA_OBJS = ca_operators.o 
+EXECUTABLES = ca_evolve_sanity_test
 
-ca_operators.o:  
-	$(CPP) $(CPPFLAGS) ca_operators.cpp -I$(INC_DIR) $(LIB_DIR)/cellular_automata.o 
-	mv ca_operators.o $(LIB_DIR)
+ca_evolve_sanity_test: $(INC_DIR)/ca_operators.h $(INC_DIR)/cellular_automata.h 
+	$(CPP) $(CPPFLAGS) -o ca_evolve_sanity_test ca_evolve_sanity_test.cpp -I$(INC_DIR) $(LIB_DIR)/ca_operators.o $(LIB_DIR)/cellular_automata.o 
+	mv ca_evolve_sanity_test $(BIN_DIR)
 
 all:	
 	make $(DATA_OBJS)
 
 cleanall:
-	cd $(LIB_DIR); rm $(DATA_OBJS)
+	cd $(BIN_DIR); rm $(EXECUTABLES)
 

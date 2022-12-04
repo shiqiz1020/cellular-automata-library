@@ -2,12 +2,14 @@
 // Shiqi Zhang, Jerry Pan, Wang Xu
 // December 2022
 
-// Directory Path: Src/ca_operators.cpp
+// Directory Path: Src/Input/ca_operators.cpp
 // This file contains the c++ implementation of the
 // cellular automata operations for the cellular automata library.
 
 #include "cellular_automata.h"
+#include "ca_operators.h"
 #include <iostream>
+#include <fstream>
 
 // Specification for cellular_automata's attributes
 // // The maximum size of the grid is 500x500
@@ -25,11 +27,15 @@
 // #define PARITY_XOR 22 // parity rule - the cell takes the parity of its neighbors
 
 // evolve(): evolve the cellular automata with the defined rule for a given number of steps and modify the current state of the cellular automata in place
-// Input: cellular_automata, number of steps, rule type, neighborhood type, boundary type
+// Input: cellular_automata, number of steps, output log file name
 // Output: none. Modify the current state of the cellular automata in place.
-void evolve(cellular_automata &ca, int steps)
+void evolve(cellular_automata ca, int steps, string log_file_name)
 {
     using namespace std;
+
+    // Open the log file
+    ofstream log_file;
+    log_file.open(log_file_name);
 
     int rule_type = ca.get_rule_type();
     int neighborhood_type = ca.get_neighborhood_type();
@@ -127,9 +133,13 @@ void evolve(cellular_automata &ca, int steps)
                             }
                         }
                     }
+                    log_file << ca.get_cell(i, j).get_state() << " ";
                 }
+                log_file << endl;
             }
+            log_file << endl;
         }
+        log_file.close();
 
         return;
     }

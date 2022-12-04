@@ -131,6 +131,7 @@ int cellular_automata::setup_dimension(int ndims, int dim1, int dim2)
     }
     this->width = dim1;
     this->height = dim2;
+    this->ndims = ndims;
     this->CA_data = new (nothrow) Cell *[this->height];
     if (this->CA_data != NULL)
     {
