@@ -23,11 +23,15 @@ BIN_DIR = ../Bindir
 
 # The next line contains the list of datatype object files created 
 # by this Makefile. These are the targets this makefile builds
-EXECUTABLES = ca_evolve_sanity_test
+EXECUTABLES = ca_evolve_sanity_test cancer_cell_model
 
 ca_evolve_sanity_test: $(INC_DIR)/ca_operators.h $(INC_DIR)/cellular_automata.h 
 	$(CPP) $(CPPFLAGS) -o ca_evolve_sanity_test ca_evolve_sanity_test.cpp -I$(INC_DIR) $(LIB_DIR)/ca_operators.o $(LIB_DIR)/cellular_automata.o 
 	mv ca_evolve_sanity_test $(BIN_DIR)
+
+cancer_cell_model: $(INC_DIR)/ca_operators.h $(INC_DIR)/cellular_automata.h 
+	$(CPP) $(CPPFLAGS) -o cancer_cell_model cancer_cell_model.cpp -I$(INC_DIR) $(LIB_DIR)/ca_operators.o $(LIB_DIR)/cellular_automata.o 
+	mv cancer_cell_model $(BIN_DIR)
 
 all:	
 	make $(DATA_OBJS)
