@@ -7,7 +7,7 @@
 // cellular automata data structure.
 
 #include "cellular_automata.h"
-#include <stdlib.h> 
+#include <stdlib.h>
 #include <iostream>
 
 using namespace std;
@@ -250,7 +250,9 @@ int cellular_automata::update_config(int x_state, double prob)
             if (rand() % 100 < this->prob * 100)
             {
                 this->CA_data[i][j].set_state(this->init_state);
-            } else {
+            }
+            else
+            {
                 this->CA_data[i][j].set_state(STATE1);
             }
         }
@@ -392,9 +394,9 @@ double cellular_automata::get_prob()
 // description: The function to get the cell of the CA.
 // input: The x and y coordinate of the cell.
 // output: The cell of the CA.
-Cell cellular_automata::get_cell(int x, int y)
+Cell *cellular_automata::get_cell(int x, int y)
 {
-    return this->CA_data[y][x];
+    return &(this->CA_data[y][x]);
 }
 
 // function: cellular_automata::get_cell_state()

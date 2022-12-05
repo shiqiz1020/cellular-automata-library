@@ -53,8 +53,6 @@ public:
     int get_state();
     // The function to set the state of the cell.
     int set_state(int state);
-
-private:
     // The x coordinate of the cell.
     int x;
     // The y coordinate of the cell.
@@ -114,7 +112,7 @@ public:
     // The function to get the probability of the CA.
     double get_prob();
     // The function to get the cell at the given coordinate.
-    Cell get_cell(int x, int y);
+    Cell *get_cell(int x, int y);
     // The function to get the state of the cell at the given coordinate.
     int get_cell_state(Cell *cell);
     // The function to set the state of the cell at the given coordinate.
