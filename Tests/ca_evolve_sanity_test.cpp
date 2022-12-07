@@ -16,16 +16,17 @@ using namespace std;
 // Initialize a cellular automata object, and set up the dimension, neighborhood, boundary, and nstates.
 int main()
 {
+    // Create a CA object.
     cellular_automata *CA = new cellular_automata();
-    CA->setup_dimension(2, 50, 50);
+    CA->setup_dimension(2, 100, 100);
     CA->setup_neighborhood(MOOR);
     CA->setup_boundary(WALLED, 1);
-    CA->setup_nstates(10);
+    CA->setup_nstates(20);
     CA->setup_rules_prob(PARITY_XOR, 0.5);
     CA->update_config(STATE2, 0.5);
 
     // Evolve the CA for 100 steps.
-    CA_evolve(*CA, 50, "./Utils/Data/log.txt");
+    CA_evolve(*CA, 100, "./Utils/Data/log.txt");
 
     return 0;
 }
