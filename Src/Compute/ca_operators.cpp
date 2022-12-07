@@ -82,11 +82,13 @@ void CA_evolve(cellular_automata CA, int steps, string log_file_name)
     log_file << CA.get_height() << " ";
     log_file << CA.get_num_states() << " ";
     log_file << CA.get_prob() << " ";
-    log_file << endl << endl;
+    log_file << endl
+             << endl;
 
     // Get the dimensions
     int width = CA.get_width();
     int height = CA.get_height();
+    int nstates = CA.get_num_states();
 
     // Now we only support WALLED boundary type
     if (boundary_type == WALLED)
@@ -116,7 +118,7 @@ void CA_evolve(cellular_automata CA, int steps, string log_file_name)
                     // Get the number of neighbors in state 2
                     int num_neighbors_state2 = 0;
 
-                    if (STATE2 < original_state[i][j] && original_state[i][j] < STATE4)
+                    if (STATE2 < original_state[i][j] && original_state[i][j] < STATE1 - 1 + nstates)
                     {
                         CA.get_cell(i, j)->set_state(original_state[i][j] + 1);
                     }

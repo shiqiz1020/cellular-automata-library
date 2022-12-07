@@ -20,7 +20,7 @@ int main()
     CA->setup_dimension(2, 10, 10);
     CA->setup_neighborhood(VON_NEUMAN);
     CA->setup_boundary(WALLED, 1);
-    CA->setup_nstates(4);
+    CA->setup_nstates(10);
     CA->setup_rules_prob(PARITY_XOR, 0.5);
     CA->update_config(STATE2, 0.5);
 
