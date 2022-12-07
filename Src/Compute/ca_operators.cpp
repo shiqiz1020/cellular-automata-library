@@ -76,14 +76,19 @@ void CA_evolve(cellular_automata CA, int steps, string log_file_name)
     }
 
     // Output metadata in the log file in the order:
-    // ndims, dim1, dim2, nstates, initProb
+    // ndims, dim1, dim2, nstates, initProb, steps
     log_file << CA.get_ndims() << " ";
     log_file << CA.get_width() << " ";
     log_file << CA.get_height() << " ";
     log_file << CA.get_num_states() << " ";
     log_file << CA.get_prob() << " ";
+<<<<<<< HEAD
     log_file << endl
              << endl;
+=======
+    log_file << steps << " ";
+    log_file << endl << endl;
+>>>>>>> c7e556b1b330968030d9159d95dc232aaf08e0dc
 
     // Get the dimensions
     int width = CA.get_width();
