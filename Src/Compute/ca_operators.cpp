@@ -97,6 +97,7 @@ void CA_evolve(cellular_automata CA, int steps, string log_file_name)
         // Evolve the cellular automata for a given number of steps
         for (int step = 0; step < steps; step++)
         {
+            cout << "Step " << step << endl;
             // Duplicate the current state of the cellular automata as a cellular automata object
             int original_state[width][height];
 
@@ -108,7 +109,7 @@ void CA_evolve(cellular_automata CA, int steps, string log_file_name)
                     original_state[i][j] = CA.get_cell(i, j)->get_state();
                 }
             }
-
+            // cout << "After getting the original state" << endl;
             // Evolve the cellular automata for one step
             for (int i = 0; i < height; i++)
             {
@@ -164,6 +165,12 @@ void CA_evolve(cellular_automata CA, int steps, string log_file_name)
                 log_file << endl;
             }
             log_file << endl;
+
+            cout << "Before getting the percentage" << endl;
+            int percentage = CA_get_percentage(CA, STATE1);
+            // int percentage = 0;
+            cout << percentage << endl;
+            cout << "After getting the percentage" << endl;
         }
         log_file.close();
         return;
@@ -201,4 +208,29 @@ bool CA_neighborhood_check(int neighborhood_type, int i, int j, int neighbor_i, 
         }
     }
     return false;
+}
+
+// The function to return the percentage of x_state in the result CA
+double CA_get_percentage(cellular_automata CA, int x_state)
+{
+    // Get the dimensions
+    return 0;
+    // int width = CA.get_width();
+    // int height = CA.get_height();
+    // int num_x_state = 0;
+
+    // Get the number of cells in state x_state
+    // for (int i = 0; i < height; i++)
+    // {
+    //     for (int j = 0; j < width; j++)
+    //     {
+    //         int state = CA.get_cell(i, j)->get_state();
+    //         if (state == x_state)
+    //         {
+    //             num_x_state++;
+    //         }
+    //     }
+    // }
+
+    // return (double)num_x_state / (width * height);
 }
