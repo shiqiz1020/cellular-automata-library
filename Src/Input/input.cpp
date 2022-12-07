@@ -55,6 +55,10 @@ int CA_setup_boundary(cellular_automata CA, int boundary_type, int radius)
 // output: 1 on success, -2 on making update after setup stage, -4 on invalid nstates.
 int CA_setup_nstates(cellular_automata CA, int nstates)
 {
+    if (nstates < 4)
+    {
+        return -4;
+    }
     return CA.setup_nstates(nstates);
 }
 
