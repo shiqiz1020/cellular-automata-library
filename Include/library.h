@@ -28,8 +28,10 @@ int CA_init_rewrite_config(cellular_automata CA, int x_state, double prob);
 int CA_setup_rules(cellular_automata CA, int rule_type);
 // The function to set up the basic CA rules for computation with probability.
 int CA_setup_rules_prob(cellular_automata CA, int rule_type, double prob);
-// evolve(): evolve the cellular automata with the defined rule for a given number of 
+// The function to evolve the cellular automata with the defined rule for a given number of 
 // steps and modify the current state of the cellular automata in place
 void CA_evolve(cellular_automata CA, int steps, string log_file_name);
-// neighborhood_check whether the neighbor is inside the grid according to the neighborhood type
+// The function to check whether the neighbor is inside the grid according to the neighborhood type
 bool CA_neighborhood_check(int neighborhood_type, int i, int j, int neighbor_i, int neighbor_j, int height, int width, int radius);
+// The functino to return the percentage of x_state in the result CA
+// double CA_get_percentage(cellular_automata CA, int x_state);
