@@ -7,7 +7,7 @@
 // cellular automata operations for the cellular automata library.
 
 #include "cellular_automata.h"
-#include "ca_operators.h"
+#include "library.h"
 #include <iostream>
 #include <fstream>
 
@@ -29,7 +29,7 @@
 // evolve(): evolve the cellular automata with the defined rule for a given number of steps and modify the current state of the cellular automata in place
 // Input: cellular_automata, number of steps, output log file name
 // Output: none. Modify the current state of the cellular automata in place.
-void evolve(cellular_automata ca, int steps, string log_file_name)
+void CA_evolve(cellular_automata CA, int steps, string log_file_name)
 {
     using namespace std;
 
@@ -37,10 +37,10 @@ void evolve(cellular_automata ca, int steps, string log_file_name)
     ofstream log_file;
     log_file.open(log_file_name);
 
-    int rule_type = ca.get_rule_type();
-    int neighborhood_type = ca.get_neighborhood_type();
-    int boundary_type = ca.get_boundary_type();
-    int radius = ca.get_radius();
+    int rule_type = CA.get_rule_type();
+    int neighborhood_type = CA.get_neighborhood_type();
+    int boundary_type = CA.get_boundary_type();
+    int radius = CA.get_radius();
 
     // Check if the rule type is valid
     if (rule_type != MAJORITY && rule_type != PARITY_XOR)
@@ -68,15 +68,25 @@ void evolve(cellular_automata ca, int steps, string log_file_name)
     }
 
     // Get the number of dimensions
-    int ndims = ca.get_ndims();
+    int ndims = CA.get_ndims();
     if (ndims != 2)
     {
         cout << "Invalid number of dimensions!" << endl;
         return;
     }
+
+    // Output metadata in the log file in the order:
+    // ndims, dim1, dim2, nstates, initProb
+    log_file << CA.get_ndims() << " ";
+    log_file << CA.get_width() << " ";
+    log_file << CA.get_height() << " ";
+    log_file << CA.get_num_states() << " ";
+    log_file << CA.get_prob() << " ";
+    log_file << endl << endl;
+
     // Get the dimensions
-    int width = ca.get_width();
-    int height = ca.get_height();
+    int width = CA.get_width();
+    int height = CA.get_height();
 
     // Now we only support WALLED boundary type
     if (boundary_type == WALLED)
@@ -92,11 +102,10 @@ void evolve(cellular_automata ca, int steps, string log_file_name)
             {
                 for (int j = 0; j < width; j++)
                 {
-                    original_state[i][j] = ca.get_cell(i, j)->get_state();
+                    original_state[i][j] = CA.get_cell(i, j)->get_state();
                 }
             }
 
-            cout << "Step " << step << endl;
             // Evolve the cellular automata for one step
             for (int i = 0; i < height; i++)
             {
@@ -109,7 +118,7 @@ void evolve(cellular_automata ca, int steps, string log_file_name)
 
                     if (STATE2 < original_state[i][j] && original_state[i][j] < STATE4)
                     {
-                        ca.get_cell(i, j)->set_state(original_state[i][j] + 1);
+                        CA.get_cell(i, j)->set_state(original_state[i][j] + 1);
                     }
                     else if (original_state[i][j] == STATE2)
                     {
@@ -121,7 +130,7 @@ void evolve(cellular_automata ca, int steps, string log_file_name)
                                 if (neighbor_i >= 0 && neighbor_i < height && neighbor_j >= 0 && neighbor_j < width)
                                 {
                                     // Check if the neighbor not is the current cell and inside the radius
-                                    if ((neighbor_i != i || neighbor_j != j) && neighborhood_check(neighborhood_type, i, j, neighbor_i, neighbor_j, height, width, radius))
+                                    if ((neighbor_i != i || neighbor_j != j) && CA_neighborhood_check(neighborhood_type, i, j, neighbor_i, neighbor_j, height, width, radius))
                                     {
                                         num_neighbors++;
                                         if (original_state[neighbor_i][neighbor_j] == STATE3)
@@ -136,18 +145,18 @@ void evolve(cellular_automata ca, int steps, string log_file_name)
                         {
                             if (num_neighbors_state2 > num_neighbors / 2)
                             {
-                                ca.get_cell(i, j)->set_state(STATE3);
+                                CA.get_cell(i, j)->set_state(STATE3);
                             }
                         }
                         else if (rule_type == PARITY_XOR)
                         {
                             if (num_neighbors_state2 > 0)
                             {
-                                ca.get_cell(i, j)->set_state(STATE3);
+                                CA.get_cell(i, j)->set_state(STATE3);
                             }
                         }
                     }
-                    log_file << ca.get_cell(i, j)->get_state() << " ";
+                    log_file << CA.get_cell(i, j)->get_state() << " ";
                 }
                 log_file << endl;
             }
@@ -161,7 +170,7 @@ void evolve(cellular_automata ca, int steps, string log_file_name)
 // neighborhood_check whether the neighbor is inside the grid according to the neighborhood type
 // Input: the current cell, the neighbor, the neighborhood type
 // Output: true if the neighbor is inside the grid, false otherwise
-bool neighborhood_check(int neighborhood_type, int i, int j, int neighbor_i, int neighbor_j, int height, int width, int radius)
+bool CA_neighborhood_check(int neighborhood_type, int i, int j, int neighbor_i, int neighbor_j, int height, int width, int radius)
 {
     // Check if the neighbor is inside the grid
     if (neighborhood_type == VON_NEUMAN)

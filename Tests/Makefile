@@ -25,7 +25,7 @@ BIN_DIR = ../Bindir
 # by this Makefile. These are the targets this makefile builds
 EXECUTABLES = ca_evolve_sanity_test
 
-ca_evolve_sanity_test: $(INC_DIR)/ca_operators.h $(INC_DIR)/cellular_automata.h 
+ca_evolve_sanity_test: $(INC_DIR)/library.h $(INC_DIR)/cellular_automata.h 
 	$(CPP) $(CPPFLAGS) -o ca_evolve_sanity_test ca_evolve_sanity_test.cpp -I$(INC_DIR) $(LIB_DIR)/ca_operators.o $(LIB_DIR)/cellular_automata.o 
 	mv ca_evolve_sanity_test $(BIN_DIR)
 
