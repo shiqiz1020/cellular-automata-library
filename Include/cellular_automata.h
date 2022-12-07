@@ -118,11 +118,6 @@ public:
     // The function to set the state of the cell at the given coordinate.
     int set_cell_state(Cell *cell, int state);
 
-    // // The function to get the number of neighbors of the CA.
-    // int get_num_neighbors();
-    // // The function to get the neighbor list of the CA.
-    // int* get_neighbor_list();
-
 private:
     // The cellular automata type.
     CA_type CA;
@@ -150,9 +145,4 @@ private:
     int rule_type;
     // The flag to indicate whether the initial configuration can be updated.
     bool allow_config_update;
-
-    // // The number of neighbors of the CA.
-    // int num_neighbors;
-    // // The neighbor list of the CA.
-    // int* neighbor_list;
 };

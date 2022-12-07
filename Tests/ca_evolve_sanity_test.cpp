@@ -6,7 +6,7 @@
 // This file contains the c++ implementation of the
 // cellular automata operations for the cellular automata library.
 
-#include "ca_operators.h"
+#include "library.h"
 #include "cellular_automata.h"
 #include <iostream>
 #include <fstream>
@@ -25,7 +25,7 @@ int main()
     CA->update_config(STATE2, 0.5);
 
     // Evolve the CA for 100 steps.
-    evolve(*CA, 20, "./Utils/Data/log.txt");
+    CA_evolve(*CA, 20, "./Utils/Data/log.txt");
 
     return 0;
 }
