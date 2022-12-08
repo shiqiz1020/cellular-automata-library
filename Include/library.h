@@ -34,4 +34,4 @@ void CA_evolve(cellular_automata CA, int steps, string log_file_name);
 // The function to check whether the neighbor is inside the grid according to the neighborhood type
 bool CA_neighborhood_check(int neighborhood_type, int i, int j, int neighbor_i, int neighbor_j, int height, int width, int radius);
 // The functino to return the percentage of x_state in the result CA
-double CA_get_percentage(cellular_automata CA, int x_state);
+double CA_get_state_counts(cellular_automata *CA, int step, int x_state);

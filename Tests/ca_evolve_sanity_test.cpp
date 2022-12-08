@@ -27,6 +27,8 @@ int main()
 
     // Evolve the CA for 100 steps.
     CA_evolve(*CA, 30, "./Utils/Data/log.txt");
+    cout << "The percentage of state 2 is " << CA_get_state_counts(CA, 30, STATE2) << endl;
+    cout << "The percentage of state 20 is " << CA_get_state_counts(CA, 30, STATE1 + 19) << endl;
 
     return 0;
 }

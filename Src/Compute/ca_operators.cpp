@@ -231,26 +231,24 @@ bool CA_neighborhood_check(int neighborhood_type, int i, int j, int neighbor_i, 
 }
 
 // The function to return the percentage of x_state in the result CA
-double CA_get_percentage(cellular_automata CA, int x_state)
+double CA_get_state_counts(cellular_automata *CA, int step, int x_state)
 {
-    // Get the dimensions
-    return 0;
-    // int width = CA.get_width();
-    // int height = CA.get_height();
-    // int num_x_state = 0;
+    int width = CA->get_width();
+    int height = CA->get_height();
+    int num_x_state = 0;
 
     // Get the number of cells in state x_state
-    // for (int i = 0; i < height; i++)
-    // {
-    //     for (int j = 0; j < width; j++)
-    //     {
-    //         int state = CA.get_cell(i, j)->get_state();
-    //         if (state == x_state)
-    //         {
-    //             num_x_state++;
-    //         }
-    //     }
-    // }
+    for (int i = 0; i < height; i++)
+    {
+        for (int j = 0; j < width; j++)
+        {
+            int state = CA->get_cell(i, j)->get_state();
+            if (state == x_state)
+            {
+                num_x_state++;
+            }
+        }
+    }
 
-    // return (double)num_x_state / (width * height);
+    return (double)num_x_state / (width * height);
 }
