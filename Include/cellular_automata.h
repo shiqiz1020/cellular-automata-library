@@ -47,13 +47,18 @@ public:
     Cell(int x, int y, int state);
     // The function to get the x coordinate of the cell.
     int get_x();
+    // The function to set the x coordinate of the cell.
+    int set_x(int x);
     // The function to get the y coordinate of the cell.
     int get_y();
+    // The function to set the y coordinate of the cell.
+    int set_y(int x);
     // The function to get the state of the cell.
     int get_state();
     // The function to set the state of the cell.
     int set_state(int state);
     // The x coordinate of the cell.
+private:
     int x;
     // The y coordinate of the cell.
     int y;

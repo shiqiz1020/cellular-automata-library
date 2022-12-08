@@ -43,6 +43,16 @@ int Cell::get_x()
     return this->x;
 }
 
+// function: Cell::set_x()
+// description: The function to get the x coordinate of the cell.
+// input: None.
+// output: 1 on success
+int Cell::set_x(int x)
+{
+    this->x = x;
+    return 1;
+}
+
 // function: Cell::get_y()
 // description: The function to get the y coordinate of the cell.
 // input: None.
@@ -50,6 +60,16 @@ int Cell::get_x()
 int Cell::get_y()
 {
     return this->y;
+}
+
+// function: Cell::set_y()
+// description: The function to get the y coordinate of the cell.
+// input: None.
+// output: 1 on success
+int Cell::set_y(int y)
+{
+    this->y = y;
+    return 1;
 }
 
 // function: Cell::get_state()
@@ -144,7 +164,10 @@ int cellular_automata::setup_dimension(int ndims, int dim1, int dim2)
             {
                 for (int j = 0; j < this->width; j++)
                 {
-                    this->CA_data[i][j] = Cell(j, i, 0);
+                    // this->CA_data[i][j] = Cell(j, i, 0);
+                    this->CA_data[i][j].set_state(STATE1);
+                    this->CA_data[i][j].set_x(j);
+                    this->CA_data[i][j].set_y(i);
                 }
             }
             else

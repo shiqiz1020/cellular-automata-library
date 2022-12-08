@@ -48,18 +48,21 @@ void CA_evolve(cellular_automata CA, int steps, string log_file_name)
         cout << "Invalid rule type!" << endl;
         return;
     }
+
     // Check if the neighborhood type is valid
     if (neighborhood_type != VON_NEUMAN && neighborhood_type != MOOR)
     {
         cout << "Invalid neighborhood type!" << endl;
         return;
     }
+
     // Check if the boundary type is valid
     if (boundary_type != NO_BOUNDARY && boundary_type != PERIODIC && boundary_type != WALLED && boundary_type != CUTOFF)
     {
         cout << "Invalid boundary type!" << endl;
         return;
     }
+
     // Check if the number of steps is valid
     if (steps <= 0)
     {
@@ -91,13 +94,21 @@ void CA_evolve(cellular_automata CA, int steps, string log_file_name)
     int height = CA.get_height();
     int nstates = CA.get_num_states();
 
+    int state_counts[steps][nstates];
+    for (int step = 0; step < steps; step++)
+    {
+        for (int state_idx = 0; state_idx < nstates; state_idx++)
+        {
+            state_counts[step][state_idx] = 0;
+        }
+    }
+
     // Now we only support WALLED boundary type
     if (boundary_type == WALLED)
     {
         // Evolve the cellular automata for a given number of steps
         for (int step = 0; step < steps; step++)
         {
-            cout << "Step " << step << endl;
             // Duplicate the current state of the cellular automata as a cellular automata object
             int original_state[width][height];
 
@@ -109,7 +120,7 @@ void CA_evolve(cellular_automata CA, int steps, string log_file_name)
                     original_state[i][j] = CA.get_cell(i, j)->get_state();
                 }
             }
-            // cout << "After getting the original state" << endl;
+
             // Evolve the cellular automata for one step
             for (int i = 0; i < height; i++)
             {
@@ -161,16 +172,25 @@ void CA_evolve(cellular_automata CA, int steps, string log_file_name)
                         }
                     }
                     log_file << CA.get_cell(i, j)->get_state() << " ";
+
+                    state_counts[step][CA.get_cell(i, j)->get_state() - STATE1]++;
                 }
                 log_file << endl;
             }
             log_file << endl;
 
-            cout << "Before getting the percentage" << endl;
-            int percentage = CA_get_percentage(CA, STATE1);
-            // int percentage = 0;
-            cout << percentage << endl;
-            cout << "After getting the percentage" << endl;
+            log_file << endl
+                     << endl;
+        }
+        // Output the percentage of each state in the log file
+        for (int step = 0; step < steps; step++)
+        {
+            log_file << "Step " << step + 1 << ": ";
+            for (int state_idx = 0; state_idx < nstates; state_idx++)
+            {
+                log_file << state_counts[step][state_idx] << " ";
+            }
+            log_file << endl;
         }
         log_file.close();
         return;

@@ -18,7 +18,7 @@ int main()
 {
     // Create a CA object.
     cellular_automata *CA = new cellular_automata();
-    CA->setup_dimension(2, 100, 100);
+    CA->setup_dimension(2, 10, 10);
     CA->setup_neighborhood(MOOR);
     CA->setup_boundary(WALLED, 1);
     CA->setup_nstates(20);
@@ -26,7 +26,7 @@ int main()
     CA->update_config(STATE2, 0.5);
 
     // Evolve the CA for 100 steps.
-    CA_evolve(*CA, 100, "./Utils/Data/log.txt");
+    CA_evolve(*CA, 30, "./Utils/Data/log.txt");
 
     return 0;
 }
