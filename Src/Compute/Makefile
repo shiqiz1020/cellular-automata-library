@@ -2,9 +2,9 @@
 # Shiqi Zhang, Jerry Pan, Wang Xu
 # December 2022
 
-# Directory Path: Src/Makefile
-# This makefile creates objects from Data Structures and Classes.
-# after creation the objects are relocated to the ../Libdir directory
+# Directory Path: Src/Compute/Makefile
+# This makefile creates objects from the cellular automata compute operations.
+# after creation the objects are relocated to the ../../Libdir directory
 
 # GNU C++ Compiler
 CPP         = g++      # C++ Compuler
@@ -22,7 +22,7 @@ LIB_DIR     = ../../Libdir
 # by this Makefile. These are the targets this makefile builds
 DATA_OBJS = ca_operators.o 
 
-ca_operators.o:  
+ca_operators.o:  $(INC_DIR)/error_code.h
 	$(CPP) $(CPPFLAGS) ca_operators.cpp -I$(INC_DIR) $(LIB_DIR)/cellular_automata.o 
 	mv ca_operators.o $(LIB_DIR)
 

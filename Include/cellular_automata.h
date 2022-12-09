@@ -7,6 +7,7 @@
 // data structures for the cellular automata library.
 #pragma once
 
+#include "error_code.h"
 #include <array>
 #include <string>
 
@@ -32,7 +33,7 @@ using namespace std;
 #define STATE4 34 // state 4: from STATE3 -> STATE4: 1 timestamp after STATE3
 
 // This class defines possible options for the cellular automata
-class CA_type
+struct CA_type
 {
     string name;
 };

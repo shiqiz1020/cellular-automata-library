@@ -2,8 +2,8 @@
 # Shiqi Zhang, Jerry Pan, Wang Xu
 # December 2022
 
-# Directory Path: Src/Makefile
-# This makefile creates objects from Data Structures and Classes.
+# Directory Path: Tests/Makefile
+# This makefile creates objects from basic tests for the cellular automata library.
 # after creation the objects are relocated to the ../Libdir directory
 
 # GNU C++ Compiler

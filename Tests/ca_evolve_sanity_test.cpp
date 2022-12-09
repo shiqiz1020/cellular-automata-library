@@ -26,7 +26,7 @@ int main()
     CA->update_config(STATE2, 0.5);
 
     // Evolve the CA for 100 steps.
-    CA_evolve(*CA, 30, "./Utils/Data/log.txt");
+    CA_evolve(CA, 30, "./Utils/Data/Compute_Results/log.txt");
     cout << "The percentage of state 2 is " << CA_get_state_percentage(CA, 30, STATE2) << endl;
     cout << "The percentage of state 20 is " << CA_get_state_percentage(CA, 30, STATE1 + 19) << endl;
 
