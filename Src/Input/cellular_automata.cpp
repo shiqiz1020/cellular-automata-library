@@ -253,7 +253,7 @@ int cellular_automata::setup_nstates(int nstates)
 // output: refer to "Include/error_code.h" for error codes.
 int cellular_automata::update_config(int x_state, double prob)
 {
-    if (x_state < 0 || x_state % 10 > this->num_states)
+    if (x_state < 0 || (x_state > (STATE1 + this->num_states - 1)))
     {
         return INVALID_STATE;
     }

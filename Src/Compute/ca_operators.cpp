@@ -36,7 +36,7 @@ int CA_evolve(cellular_automata *CA, int steps, string log_file_name)
     }
 
     // Check if the neighborhood type is valid
-    if (neighborhood_type != VON_NEUMAN && neighborhood_type != MOOR)
+    if (neighborhood_type != VON_NEUMANN && neighborhood_type != MOORE)
     {
         return INVALID_NEIGHBORHOOD;
     }
@@ -73,7 +73,8 @@ int CA_evolve(cellular_automata *CA, int steps, string log_file_name)
     log_file << nstates << " ";
     log_file << CA->get_prob() << " ";
     log_file << steps << " ";
-    log_file << endl << endl;
+    log_file << endl
+             << endl;
 
     int state_counts[steps][nstates];
     for (int step = 0; step < steps; step++)
@@ -159,7 +160,6 @@ int CA_evolve(cellular_automata *CA, int steps, string log_file_name)
                 log_file << endl;
             }
             log_file << endl;
-
         }
         // Output the percentage of each state in the log file
         for (int step = 0; step < steps; step++)
@@ -173,7 +173,7 @@ int CA_evolve(cellular_automata *CA, int steps, string log_file_name)
         }
         log_file.close();
         return SUCCESS;
-    }  
+    }
     else
     {
         return UNSUPPORTED_BOUNDARY;
@@ -186,7 +186,7 @@ int CA_evolve(cellular_automata *CA, int steps, string log_file_name)
 bool CA_neighborhood_check(int neighborhood_type, int i, int j, int neighbor_i, int neighbor_j, int height, int width, int radius)
 {
     // Check if the neighbor is inside the grid
-    if (neighborhood_type == VON_NEUMAN)
+    if (neighborhood_type == VON_NEUMANN)
     {
         // Check if the neighbor is inside the grid
         if (neighbor_i >= 0 && neighbor_i < height && neighbor_j >= 0 && neighbor_j < width)
@@ -198,7 +198,7 @@ bool CA_neighborhood_check(int neighborhood_type, int i, int j, int neighbor_i, 
             }
         }
     }
-    else if (neighborhood_type == MOOR)
+    else if (neighborhood_type == MOORE)
     {
         // Check if the neighbor is inside the grid
         if (neighbor_i >= 0 && neighbor_i < height && neighbor_j >= 0 && neighbor_j < width)
@@ -233,5 +233,5 @@ double CA_get_state_percentage(cellular_automata *CA, int step, int x_state)
         }
     }
 
-    return (double) num_x_state / (width * height);
+    return (double)num_x_state / (width * height);
 }

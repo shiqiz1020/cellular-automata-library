@@ -4,7 +4,7 @@
 
 // Directory Path: Application/cancer_matastasis.cpp
 // This file contains the c++ implementation of the
-// cancer matastasis simulation application for the 
+// cancer matastasis simulation application for the
 // cellular automata library.
 
 #include "library.h"
@@ -14,7 +14,8 @@
 using namespace std;
 
 // int main(int argc, char** argv) {
-int main() {
+int main()
+{
     int err;
 
     /* ===== Scenario 1 ===== */
@@ -25,15 +26,17 @@ int main() {
     // Create a CA object.
     cellular_automata *CA = CA_create(type);
 
-    // Set up and initialize the CA to be a 500x500 grid 
-    // with Moore neighborhood, walled boundary, and majority rule.
+    // Set up and initialize the CA to be a 500x500 grid
+    //     with MOORE neighborhood,
+    //     walled boundary, and majority rule;.
+
     err = CA_setup_dimension(CA, 2, 100, 100);
     if (err != 1)
     {
         cout << "Error at CA_setup_dimension: " << err << endl;
         return -1;
     }
-    err = CA_setup_neighborhood(CA, MOOR);
+    err = CA_setup_neighborhood(CA, MOORE);
     if (err != 1)
     {
         cout << "Error at CA_setup_neighborhood: " << err << endl;
@@ -45,7 +48,7 @@ int main() {
         cout << "Error at CA_setup_boundary: " << err << endl;
         return -1;
     }
-    err = CA_setup_rules(CA, MAJORITY);
+    err = CA_setup_rules(CA, PARITY_XOR);
     if (err != 1)
     {
         cout << "Error at CA_setup_rules: " << err << endl;
@@ -65,9 +68,10 @@ int main() {
     }
 
     // Set up the initial state of the CA to be benevolent cancer cell
-    // with probability of transition into benMalignantevolent cancer cell 
+    // with probability of transition into benMalignantevolent cancer cell
     // at 0.2.
-    err = CA_init_config(CA, 32, 0.8);
+
+    err = CA_init_config(CA, STATE2, 0.8);
     if (err != 1)
     {
         cout << "Error at CA_init_config: " << err << endl;
@@ -75,7 +79,7 @@ int main() {
     }
 
     /* Simulation of propagation */
-    // Evolve the CA for 100 steps and store the result in 
+    // Evolve the CA for 100 steps and store the result in
     // ./Compute_Results/scenario_1.txt.
     err = CA_evolve(CA, 100, "./Application/Compute_Results/scenario_1.txt");
     if (err != 1)
@@ -85,16 +89,16 @@ int main() {
     }
 
     // Print out the percentage of each state in the CA.
-    cout << "At step 50, the percentage of non-cancer cells is " << CA_get_state_percentage(CA, 500, 31) << endl;
-    cout << "At step 50, the percentage of benevolent cancer cells is " << CA_get_state_percentage(CA, 500, 32) << endl;
-    cout << "At step 50, the percentage of malignant cancer cells is " << CA_get_state_percentage(CA, 500, 33) << endl;
-    cout << "At step 50, the percentage of apoptotic cells is " << CA_get_state_percentage(CA, 500, 34) << endl;
+    cout << "At step 50, the percentage of non-cancer cells is " << CA_get_state_percentage(CA, 50, 31) << endl;
+    cout << "At step 50, the percentage of benevolent cancer cells is " << CA_get_state_percentage(CA, 50, 32) << endl;
+    cout << "At step 50, the percentage of malignant cancer cells is " << CA_get_state_percentage(CA, 50, 33) << endl;
+    cout << "At step 50, the percentage of apoptotic cells is " << CA_get_state_percentage(CA, 50, 34) << endl;
     cout << endl;
-    cout << "At step 100, the percentage of non-cancer cells is " << CA_get_state_percentage(CA, 1000, 31) << endl;
-    cout << "At step 100, the percentage of benevolent cancer cells is " << CA_get_state_percentage(CA, 1000, 32) << endl;
-    cout << "At step 100, the percentage of malignant cancer cells is " << CA_get_state_percentage(CA, 1000, 33) << endl;
-    cout << "At step 100, the percentage of apoptotic cells is " << CA_get_state_percentage(CA, 1000, 34) << endl;
+    cout << "At step 100, the percentage of non-cancer cells is " << CA_get_state_percentage(CA, 100, 31) << endl;
+    cout << "At step 100, the percentage of benevolent cancer cells is " << CA_get_state_percentage(CA, 100, 32) << endl;
+    cout << "At step 100, the percentage of malignant cancer cells is " << CA_get_state_percentage(CA, 100, 33) << endl;
+    cout << "At step 100, the percentage of apoptotic cells is " << CA_get_state_percentage(CA, 100, 34) << endl;
     cout << endl;
-    
+
     return 0;
 }

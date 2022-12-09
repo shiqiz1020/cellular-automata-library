@@ -16,8 +16,8 @@ using namespace std;
 // The maximum size of the grid is 500x500
 #define MAX_SIZE 500
 // Neighborhood types
-#define VON_NEUMAN 1 // up, down, left, right
-#define MOOR 2       // up, down, left, right, up-left, up-right, down-left, down-right
+#define VON_NEUMANN 1 // up, down, left, right
+#define MOORE 2       // up, down, left, right, up-left, up-right, down-left, down-right
 // Boundary types
 #define NO_BOUNDARY 11 // no boundary - infinite grid
 #define PERIODIC 12    // periodic boundary - the grid is a 1D ring or 2D torus

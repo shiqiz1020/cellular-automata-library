@@ -7,6 +7,7 @@
 // input setup phase for the cellular automata library.
 
 #include "library.h"
+#include <iostream>
 // #include "cellular_automata.h"
 
 using namespace std;
