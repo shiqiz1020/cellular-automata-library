@@ -2,7 +2,7 @@
 // Shiqi Zhang, Jerry Pan, Wang Xu
 // December 2022
 
-// Directory Path: Src/Input/ca_operators.cpp
+// Directory Path: Src/Compute/ca_operators.cpp
 // This file contains the c++ implementation of the
 // cellular automata compute operations for the cellular automata library.
 
