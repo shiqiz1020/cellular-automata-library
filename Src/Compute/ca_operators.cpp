@@ -4,7 +4,7 @@
 
 // Directory Path: Src/Input/ca_operators.cpp
 // This file contains the c++ implementation of the
-// cellular automata computeoperations for the cellular automata library.
+// cellular automata compute operations for the cellular automata library.
 
 #include "cellular_automata.h"
 #include "library.h"

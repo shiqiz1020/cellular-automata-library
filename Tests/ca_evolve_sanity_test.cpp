@@ -2,8 +2,8 @@
 // Shiqi Zhang, Jerry Pan, Wang Xu
 // December 2022
 
-// Directory Path: Test/ca_operators.cpp
-// This file contains the c++ implementation of the
+// Directory Path: Test/ca_evolve_sanity.cpp
+// This file contains the c++ implementation as a sanity check of the
 // cellular automata operations for the cellular automata library.
 
 #include "library.h"

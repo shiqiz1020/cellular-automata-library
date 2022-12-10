@@ -4,7 +4,7 @@
 
 # Directory Path: Src/Input/Makefile
 # This makefile creates objects from Data Structures and Classes.
-# after creation the objects are relocated to the ../../Libdir directory
+# after creating the objects are relocated to the ../../Libdir directory
 
 # GNU C++ Compiler
 CPP         = g++      # C++ Compuler
