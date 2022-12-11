@@ -7,4 +7,5 @@
 
  This subdirectory contains all the saved figures from the 
  application executable of the cancer matastasis simulation 
- for the cellular automata library.
+ for the cellular automata library. All files will be in the
+ format of .png.

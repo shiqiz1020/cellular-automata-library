@@ -8,3 +8,9 @@
  This subdirectory contains the calculated data from
  executable of the cancer matastasis simulation application for the
  cellular automata library.
+
+ Files:
+  - README: (this file) has a general description of the test programs.
+
+  - scenario_1.txt: The computed data for the cancer metastasis cellular automata simulation.
+  

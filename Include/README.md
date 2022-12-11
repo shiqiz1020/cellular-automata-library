@@ -12,10 +12,10 @@ this library.
 
 Files:
         - README: (is this file) contains general information of the 
-			  cellular-automata library include subdirectory 
+                                cellular-automata library include subdirectory 
 
-	- There is no makefile for this directory. These files 
-	  are source .h (include) files
+        - There is no makefile for this directory. These files 
+                are source .h (include) files
 
         - cellular_automata.h: This file contains C++ class definition of the basic
                 data structures for the cellular automata library

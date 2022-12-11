@@ -6,3 +6,8 @@
 # Directory Path: cellular-automata-library/Utils/Plots
 
 This directory contains source codes and generated plots for utilities. 
+
+Files:
+  - output_visualize.ipynb: the plotting python file for visualizing the cellular
+    automata computation results.
+    

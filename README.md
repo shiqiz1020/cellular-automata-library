@@ -17,7 +17,7 @@ Sub-directories:
 	- Application/ : this directory contains C++ implementation of 
                 application models for cancer cell model and california forest fire
         
-        - Bindir/ : this directory contains all the executable program
+    - Bindir/ : this directory contains all the executable program
 
 	- Libdir/ : this directory contains all the object files and
 	  libraries (.a or .so or .o)
@@ -41,3 +41,17 @@ Sub-directories:
                  will need to open the Jupyter Notebook and run the corresponding 
                  plotting programs to generate output figures from the cellular 
                  automata modeling.
+
+Compilation instructions:
+	- In the root directory, run `make all`
+	- If only want to compile the cancer metastasis application, run `make app`
+
+Instructions for running the sanity check test:
+	- In the root directory, run `./Bindir/ca_evolve_sanity_test`.
+	- The above command will create `log.txt` file under Utils/Data/Compute_Results.
+	- To visualize the result, open the output_visualize.ipynb under Utils/Plots.
+		- In the first cell, set input_dir = '../Data/Compute_Results/log.txt'
+		- Set output_dir = "../Data/Plot_Results/"
+		- If you want to save the result plots, set save_plots = True.
+		- The saved plots will be stored under Utils/Data/Plot_Results.
+	

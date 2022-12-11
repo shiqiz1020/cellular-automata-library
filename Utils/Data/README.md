@@ -7,3 +7,10 @@
 
 This directory contains data and generated plots for utilities
 of the sanity check program from /Tests/ca_evolve_sanity_test.cpp
+
+Files:
+  - Compute_Results: this subdirectory contains the calculated data from
+    /Tests/ca_evolve_sanity_test.cpp
+
+  - Plot_Results: this subdirectory contains all the saved figures from the
+    test executable

@@ -71,7 +71,7 @@ int main()
     // with probability of transition into benMalignantevolent cancer cell
     // at 0.2.
 
-    err = CA_init_config(CA, STATE2, 0.8);
+    err = CA_init_config(CA, STATE2, 0.5);
     if (err != 1)
     {
         cout << "Error at CA_init_config: " << err << endl;

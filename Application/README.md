@@ -27,3 +27,13 @@
 
   - Plot_Results: this subdirectory contains all the saved figures from the
     application executable
+
+Instruction to run the sample application:
+  1. In the root directory, run `make app`
+  2. In the root directory, run `./Bindir/cancer_metastasis`. 
+    - The compute result will be stored in Application/Compute_Results
+  3. Run output_visualize.ipynb in Utils/Plots 
+    - In the first cell, set input_dir = '../../Application/Compute_Results/scenario_1.txt'
+    - set output_dir = "../../Application/Plot_Results/"
+    - To save the output plots, set save_plots = True
+    - The saved plots will be stored in Application/Plot_Results.
