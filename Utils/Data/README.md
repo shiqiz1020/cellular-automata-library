@@ -5,4 +5,5 @@
 # December 2022
 # Directory Path: cellular-automata-library/Utils/Data
 
-This directory contains data for utilities.
+This directory contains data and generated plots for utilities
+of the sanity check program from /Tests/ca_evolve_sanity_test.cpp
