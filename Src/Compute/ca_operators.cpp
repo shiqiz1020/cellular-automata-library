@@ -17,7 +17,7 @@
 // Output: Modify the current state of the cellular automata in place.
 //         Refer to "Include/error_code.h" for error codes.
 int CA_evolve(cellular_automata *CA, int steps, string log_file_name)
-{
+{ 
     using namespace std;
 
     // Open the log file
